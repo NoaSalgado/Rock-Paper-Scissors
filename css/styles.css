@@ -1,0 +1,231 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --clr-accent: #eb5e28;
+  --clr-primary: #252422;
+  --clr-primary-light: #403d39;
+  --clr-secondary: #ccc5b9;
+  --clr-secondary-light: #fffcf2;
+
+  --border-radius: 0.5rem;
+
+  --ff-accent: "VT323", monospace;
+  --ff-base: "Kanit", sans-serif;
+  --fw-regular: 400;
+  --fw-bold: 600;
+}
+
+body {
+  background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(
+      #1d1d1d 25%,
+      #1a1a1a 25%,
+      #1a1a1a 50%,
+      transparent 50%,
+      transparent 75%,
+      #242424 75%,
+      #242424
+    );
+  background-color: #131313;
+  background-size: 20px 20px;
+}
+
+main {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/******UTILITY CLASSES******/
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--clr-primary);
+  cursor: pointer;
+  outline: none;
+  padding: 1rem;
+}
+
+/******START SCREEN******/
+.start {
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  flex-direction: column;
+  row-gap: 5rem;
+}
+
+.start.hidden {
+  display: none;
+}
+
+.start__heading {
+  color: var(--clr-secondary-light);
+  font-family: var(--ff-accent);
+  font-size: 7.2rem;
+  text-align: center;
+}
+
+.start__btn {
+  background-color: var(--clr-secondary-light);
+  box-shadow: 0px 8px var(--clr-secondary);
+  color: #252422;
+  font-family: var(--ff-accent);
+  font-size: 3.2rem;
+  position: relative;
+
+  align-self: center;
+}
+
+.start__btn:hover {
+  box-shadow: 0px 4px var(--clr-secondary);
+  top: 0.2rem;
+}
+
+.start__btn:active {
+  box-shadow: none;
+  top: 0.6rem;
+}
+
+/******GAME SCREEN******/
+.game {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s ease-in;
+}
+
+.game.display {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.game__header {
+  padding: 4rem 0;
+
+  justify-content: space-between;
+}
+
+.game__header p {
+  color: var(--clr-secondary-light);
+  font-family: var(--ff-accent);
+  font-size: 5.2rem;
+}
+
+.game__header button {
+  background-color: var(--clr-accent);
+  font-size: 1.8rem;
+  font-family: var(--ff-base);
+  font-weight: var(--fw-bold);
+  align-self: center;
+}
+
+.game__round {
+  background-color: var(--clr-primary-light);
+  border-radius: var(--border-radius);
+  padding: 4rem 0;
+  width: 100%;
+
+  justify-content: space-between;
+}
+
+.game__round--player,
+.game__round--computer {
+  flex-basis: 30%;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+.game__round--player p,
+.game__round--computer p {
+  color: var(--clr-secondary-light);
+  font-family: var(--ff-base);
+  font-size: 2.8rem;
+  font-weight: var(--fw-regular);
+}
+
+.game__round--player img,
+.game__round--computer img {
+  height: 8rem;
+  width: 8rem;
+}
+
+.game__round--result {
+  color: var(--clr-accent);
+  font-family: var(--ff-base);
+  font-size: 3.2rem;
+  font-weight: var(--fw-bold);
+
+  align-self: center;
+}
+
+.game__weapons {
+  flex-direction: column;
+  align-items: center;
+  row-gap: 3rem;
+}
+
+.game__weapons--heading {
+  color: var(--clr-secondary-light);
+  font-family: var(--ff-base);
+  font-size: 3.2rem;
+}
+
+.game__weapons--btns {
+  width: 50%;
+  justify-content: space-between;
+}
+
+.game__weapons--btns button {
+  border: 5px solid var(--clr-accent);
+  background-color: var(--clr-primary);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  height: 15rem;
+  width: 15rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.game__weapons--btns button:is(:hover, :active) {
+  background-color: var(--clr-primary-light);
+}
+
+button#rock {
+  background-image: url(../img/rock.svg);
+}
+
+button#paper {
+  background-image: url(../img/paper.svg);
+}
+
+button#scissors {
+  background-image: url(../img/scissors.svg);
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/app.js" defer></script>
+    <title>Rocket Paper Scissors</title>
+  </head>
+  <body>
+    <main class="flex">
+      <!--Start Screen-->
+      <section class="start flex">
+        <h1 class="start__heading">Rock, Paper, Scissors?</h1>
+        <button class="start__btn btn">Play Now!!</button>
+      </section>
+
+      <!--Game Screen-->
+      <section class="game container">
+        <header class="game__header flex">
+          <p>Rock, Paper, Scissors</p>
+          <button class="btn">Restart</button>
+        </header>
+
+        <div class="game__round flex">
+          <div class="game__round--player flex">
+            <p>You</p>
+            <img />
+            <p>Score: <span></span></p>
+          </div>
+
+          <div class="game__round--result"></div>
+
+          <div class="game__round--computer flex">
+            <p>Computer</p>
+            <img src="" />
+            <p>Score: <span></span></p>
+          </div>
+        </div>
+
+        <div class="game__weapons flex">
+          <h3 class="game__weapons--heading">Choose your Weapon</h3>
+          <div class="game__weapons--btns flex">
+            <button id="rock" class="btn" data-icon="rock"></button>
+            <button id="paper" class="btn"></button>
+            <button id="scissors" class="btn"></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
