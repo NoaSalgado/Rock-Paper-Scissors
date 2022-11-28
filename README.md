@@ -15,4 +15,4 @@ This is my version of the rock, paper, scissors game. This project is part of [O
 
 ## Live Preview
 
-[Here](https://noasalgado.github.io/Rocket-Paper-Scissors/)
+[Here](https://noasalgado.github.io/Rock-Paper-Scissors/)
