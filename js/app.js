@@ -1,11 +1,15 @@
 const startScreen = document.querySelector(".start");
 const gameScreen = document.querySelector(".game");
 const startBtn = document.querySelector(".start__btn");
+const restartBtn = document.querySelector(".game__header button");
 const selectedWeaponsIcons = document.querySelectorAll(".game__round img");
 const scoreSpans = document.querySelectorAll(".game__round span");
 const roundResultContainer = document.querySelector(".game__round--result");
 const weaponsBtns = document.querySelectorAll(".game__weapons--btns button");
-console.log(weaponsBtns);
+const overlay = document.querySelector(".overlay");
+const modal = document.querySelector(".modal");
+const playAgainBtn = document.querySelector(".new-game-btn");
+const exitGameBtn = document.querySelector(".exit-btn");
 
 const computerChoices = ["rock", "paper", "scissors"];
 let playerScore;
@@ -14,7 +18,6 @@ let computerScore;
 const startGame = () => {
   selectedWeaponsIcons.forEach((icon) => {
     icon.src = "../img/none.svg";
-    console.log(icon);
   });
 
   scoreSpans.forEach((span) => {
@@ -34,29 +37,29 @@ const getComputerChooice = () => {
 const playRound = (playerSelection, computerSelection) => {
   let message;
   if (playerSelection === computerSelection) {
-    message = "No winner!";
+    message = "It´s a tie!";
   } else if (playerSelection === "rock") {
     if (computerSelection === "paper") {
-      message = "You loose!! Paper beats rock!";
+      message = "You loose!! <span>Paper beats rock</span>";
       computerScore++;
     } else if (computerSelection === "scissors") {
-      message = "You win!! Rock beats scissors";
+      message = "You win!! <span>Rock beats scissors</span>";
       playerScore++;
     }
   } else if (playerSelection === "paper") {
     if (computerSelection === "rock") {
-      message = "You  win!! Paper beats rock";
+      message = "You  win!! <span>Paper beats rock</span>";
       playerScore++;
     } else if (computerSelection === "scissors") {
-      message = "You loose!! Scissors beat paper";
+      message = "You loose!! <span>Scissors beat paper</span>";
       computerScore++;
     }
   } else if (playerSelection === "scissors") {
     if (computerSelection === "paper") {
-      message = "You win!! Scissors beat paper";
+      message = "You win!! <span>Scissors beat paper</span>";
       playerScore++;
     } else if (computerSelection === "rock") {
-      message = "You loose!! Rock beats scissors";
+      message = "You loose!! <span>Rock beats scissors</span>";
       computerScore++;
     }
   }
@@ -81,7 +84,7 @@ const updateRound = (
 ) => {
   selectedWeaponsIcons[0].src = `../img/${playerSelection}.svg`;
   selectedWeaponsIcons[1].src = `../img/${computerSelection}.svg`;
-  roundResultContainer.textContent = message;
+  roundResultContainer.innerHTML = message;
   scoreSpans[0].textContent = playerScore;
   scoreSpans[1].textContent = computerScore;
 };
@@ -98,7 +101,18 @@ getWinner = (playerScore, computerScore) => {
     winnerText = "You loose... 🥹";
   }
 
-  console.log(winnerText);
+  showModal(winnerText);
+};
+
+const hideModal = () => {
+  overlay.classList.remove("display");
+  modal.classList.remove("display");
+};
+
+const showModal = (text) => {
+  overlay.classList.add("display");
+  modal.classList.add("display");
+  modal.querySelector(".modal__text").textContent = text;
 };
 
 startBtn.addEventListener("click", () => {
@@ -108,12 +122,24 @@ startBtn.addEventListener("click", () => {
   startGame();
 });
 
+restartBtn.addEventListener("click", () => {
+  startGame();
+});
+
+playAgainBtn.addEventListener("click", () => {
+  hideModal();
+  startGame();
+});
+
+exitGameBtn.addEventListener("click", () => {
+  hideModal();
+  startScreen.classList.remove("hidden");
+  gameScreen.classList.remove("display");
+});
+
 weaponsBtns.forEach((weaponsBtn) => {
   weaponsBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    console.log(e.target);
     const playerSelection = e.target.id;
-    console.log(playerSelection);
     const computerSelection = getComputerChooice();
     playRound(playerSelection, computerSelection);
   });
