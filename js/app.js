@@ -17,7 +17,7 @@ let computerScore;
 
 const startGame = () => {
   selectedWeaponsIcons.forEach((icon) => {
-    icon.src = "../img/none.svg";
+    icon.src = "./img/none.svg";
   });
 
   scoreSpans.forEach((span) => {
@@ -82,8 +82,8 @@ const updateRound = (
   playerScore,
   computerScore
 ) => {
-  selectedWeaponsIcons[0].src = `../img/${playerSelection}.svg`;
-  selectedWeaponsIcons[1].src = `../img/${computerSelection}.svg`;
+  selectedWeaponsIcons[0].src = `./img/${playerSelection}.svg`;
+  selectedWeaponsIcons[1].src = `./img/${computerSelection}.svg`;
   roundResultContainer.innerHTML = message;
   scoreSpans[0].textContent = playerScore;
   scoreSpans[1].textContent = computerScore;
